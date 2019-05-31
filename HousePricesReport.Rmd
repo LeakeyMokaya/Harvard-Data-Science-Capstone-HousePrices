@@ -20,13 +20,13 @@ knitr::opts_chunk$set(
 
 ## 1. Introduction 
 
-The HarvardX Data Science Capstone House Prices project is an ongoing Kaggle competition using advanced regression techniques to predict sales prices and practice feature engineering, RFs, and gradient boosting. The link to the competition is here. https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+*House Prices: Advanced Regression Techniques* is an ongoing Kaggle competition using advanced regression techniques to predict sales prices and practice feature engineering, RFs, and gradient boosting. The link to the competition is here. https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
 I thought this would be a good choose your own project in that it builds on the linear regression methods that were used in the MovieLens movie recommendation system project. The competition also allows me to get feedback from the Kaggle community on my methods, analysis, and results. 
 
-The submissions are evaluated on Root Mean Squared Logarithmic Error (RMSLE) between the logarithm of the predicted value and the logarithm of the observed sales price. The objective is for each Id in the test set, the model must predict the value of the SalePrice variable and minimize the RMSLE. 
+The submissions are evaluated on Root Mean Squared Logarithmic Error (RMSLE) between the logarithm of the predicted value and the logarithm of the observed sales price. The objective is for each Id in the train set, the model must predict the value of the SalePrice variable and minimize the RMSLE. The submission file is them the predicted SalesPrice using your best model on the test set which has unknown values for SalePrice.
 
-The ML model used with the smallest RMSLE was the *Lasso regression model* on the training set with a RMSLE of 0.0978573.
+The ML model used with the smallest RMSLE was the *Lasso regression model* on the train set with a RMSLE of 0.0978573.
 
 ## 2. Overview
 
@@ -625,7 +625,7 @@ SalePrice: the property's sale price in dollars. This is the target variable tha
 
 ## 4. Methods and Analysis: Data exploration and visualization 
 
-As you can see from the chart below, the sale prices in the test data set are right skewed. This is not unusual since the most expensive homes greater than 400K have lower volume of sales as compared with the bulk of sales in the 100K to 300K range. 
+As you can see from the chart below, the SalePrice in the train dataset is right skewed. This is not unusual since the most expensive homes greater than 400K have lower volume of sales as compared with the bulk of sales in the 100K to 300K range. 
 
 ```{r message=FALSE, warning=FALSE, paged.print=FALSE}
 
@@ -669,10 +669,10 @@ ggplot(data=train[!is.na(train$SalePrice),], aes(x=factor(OverallQual), y=SalePr
 
 
 
-###   5. Evaluated Machine Learning Algorithms
+##   5. Evaluated Machine Learning Algorithms
 ####      5.1 Model Prepping
 
-Before we can start modeling, we need to first partition the SalesPrice dataset and here I will use the caret package.
+Before we can start modeling, we need to first partition the train dataset and here I will use the caret package.
 
 ```{r}
 set.seed(123)
@@ -746,7 +746,7 @@ where:
 #### * $(b_10)$  effects or bias, YearRemodAdd effect. 
 #### * $(\varepsilon)$ are independent errors sampled from the same distribution centered at 0. 
 
-The resulting RMSLE from this *top-10-effect model* on the test_set was an improvement on the *OverallQual effect model* RMSLE at 0.1912581. Let's see if we can do better with regularization.
+The resulting RMSLE from this *top-10-effect model* on the test_set was an improvement on the *OverallQual effect model* RMSLE at 0.1912581. Let's see if we can do better with backward elimination.
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -788,7 +788,7 @@ where:
 #### * $(b_5)$  effects or bias, YearRemodAdd effect. 
 #### * $(\varepsilon)$ are independent errors sampled from the same distribution centered at 0. 
 
-The resulting RMSLE from this *backward elimination model* on the test_set was not an improvement and in a sense we did go backward at 0.2039798. Let's see if we can do better with regularization.
+The resulting RMSLE from this *backward elimination model* on the test_set was not an improvement and in a sense we did go backward at 0.2039798. Let's see if we can do better with a random forest model.
 
 ```{r}
 set.seed(123)
@@ -814,9 +814,9 @@ RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
 ####        5.5 Random Forest Regression Model 
 
-The next regression model that I will generate uses all variables to SalePrice on the training set using a randomForest algorithm.
+The next regression model that I will generate uses all variables to SalePrice on the training set using the randomForest package.
 
-The resulting RMSLE from this *Random Forest model* to predict SalePrice on the testing set resulted in a RMSLE of 0.1384136.
+The resulting RMSLE from this *Random Forest model* to predict SalePrice on the testing set resulted in a RMSLE of 0.1384136. Now let us try a regularization method. 
 
 ```{r}
 set.seed(123)
