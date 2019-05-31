@@ -58,13 +58,13 @@ library(kableExtra)
 train <- read.csv("train.csv")
 
 # Fill NA with 0 for modeling purposes
-train %>% mutate_all(~replace(., is.na(.), 0))
+Train <- train %>% mutate_all(~replace(., is.na(.), 0))
 
 # Read House Prices test dataset:
 test <- read.csv("test.csv")
 
 # Fill NA with 0 for modeling purposes
-test %>% mutate_all(~replace(., is.na(.), 0))
+test <- test %>% mutate_all(~replace(., is.na(.), 0))
 
 #Converting character variables to numeric
 
