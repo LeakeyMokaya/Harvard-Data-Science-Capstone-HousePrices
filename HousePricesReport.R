@@ -725,7 +725,7 @@ RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
 
 #' 
-#' ####        4.3.2 Multiple Linear Regression Model
+#' ####        5.3 Multiple Linear Regression Model
 #' 
 #' The next regression model that I will generate uses the the top 10 most correlated numeric variables to SalePrice on the train set to predict the `rating` $Y$ for the test set.
 #' 
@@ -772,7 +772,7 @@ RMSLE_table <- rbind(RMSLE_table,
 
 RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
-#' ####        4.3.2 Backward Elimination Linear Regression Model
+#' ####        5.4 Backward Elimination Linear Regression Model
 #' 
 #' The next regression model that I will generate uses backwards elimination to pick the most signification bias variables to SalePrice on the train set to predict the `rating` $Y$ for the test set.
 #' 
@@ -812,7 +812,7 @@ RMSLE_table <- rbind(RMSLE_table,
 RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
 #' 
-#' ####        4.3.5 Random Forest Model 
+#' ####        5.5 Random Forest Regression Model 
 #' 
 #' The next regression model that I will generate uses all variables to SalePrice on the training set using a randomForest algorithm.
 #' 
@@ -837,7 +837,7 @@ RMSLE_table <- rbind(RMSLE_table,
 RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
 #' 
-#' ####        4.3.3 Lasso Regression Model
+#' ####        5.6 Lasso Regression Model
 #' 
 #' The Lasso Regression model on all variables in the training set to seeks to minimize the RMSLE using cross validation to pick the optimal λ.  
 #' 
@@ -881,14 +881,14 @@ RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 #' 
 #' 
 #' 
-#' ## 5. Results:
+#' ## 6. Results:
 #' 
 #' The resulting RMSLE from this *Lasso regression model* on the training set brought the RMSLE down to 0.0978573. That is good enough for top 10 on the current Kaggle leaderboard! 
 #' 
 #' https://www.kaggle.com/c/house-prices-advanced-regression-techniques/leaderboard
 #' 
 #' 
-#' ## 6. Conclusion:
+#' ## 7. Conclusion:
 #' 
 #' The main learning objective of the HarvardX: Introduction to Data Science program was to give
 #' aspiring data scientists like myself the tools in R to run analytic models using machine learning to make predictions and solve real world problems. This was a fascinating journey over the past six months and I look forward to improving my data science skills in R and Python through my work and personally through Kaggle competitions that I have an interest in. 
