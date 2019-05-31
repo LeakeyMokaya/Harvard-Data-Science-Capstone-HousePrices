@@ -7,7 +7,7 @@ output:
     toc: yes
   pdf_document:
     latex_engine: xelatex
-    toc: yes
+    toc: yespur
 ---
 
 ```{r setup, include=FALSE}
@@ -49,7 +49,6 @@ library(xgboost)
 library(data.table)
 library(lubridate)
 library(ggplot2)
-library(stargazer)
 library(corrplot)
 library(knitr)
 library(kableExtra)
@@ -84,9 +83,7 @@ The House Prices Kaggle data includes four files train.csv, test.csv, sample_sub
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
-stargazer(train[1:4,], summary=FALSE, rownames=FALSE)
-
-stargazer(train)
+summary(train)
 
 ```
 
@@ -94,9 +91,7 @@ stargazer(train)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
-stargazer(test[1:4,], summary=FALSE, rownames=FALSE)
-
-stargazer(test)
+summary(test)
 
 ```
 
