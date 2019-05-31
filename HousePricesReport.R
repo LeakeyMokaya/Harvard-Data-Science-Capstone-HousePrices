@@ -835,11 +835,9 @@ testing_log <- log(testing$SalePrice)
 
 model_rmse <- RMSE(testing_log, prediction_log)
 
-rf_rmse <- RMSE(model_output$log_SalePrice,model_output$log_prediction)
-
 RMSLE_table <- rbind(RMSLE_table,
                     data_frame(Method = "Random Forest regression model",
-                               RMSLE = min(rf_rmse)))
+                               RMSLE = model_rmse))
 
 RMSLE_table %>% knitr::kable(caption = "RMSLEs")
 
